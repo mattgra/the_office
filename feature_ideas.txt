@@ -1,0 +1,4 @@
+# Ideas for new features
+
+- split the line entries by sentence separators s.t. 1 dataframe entry = 1 sentence (now it can be multiple sentences)
+
