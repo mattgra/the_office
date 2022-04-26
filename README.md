@@ -5,6 +5,11 @@
 
 - [Purpose](#Purpose)
 - [Features](#Features)
+- [Setup](#Setup)
+  - [Clone repo](#Clone repo)
+  - [Conda env](#Recreate python env)
+  - [Code formatting](#Formatting)
+  - [Testing](#Testing)
 
 ## Purpose
 I was looking for a nice data science project - nice as in novel, helpful to humanity, ... - but didn't bother doing the classic "predict skin cancer from 50 trillion images using 17 GPUs" project.
@@ -15,3 +20,30 @@ So, the next best option was doing an analysis of the best show ever - the offic
 - Which characters speak the most words per season & gender?
 - Is the episode rating (if available) a function of who spoke how much?
 - Are there topic clusters of different shows (bonus)
+
+## Setup
+
+1. Clone the repo
+2. Setup the environment
+3. Try stuff
+
+### Clone repo
+To clone the repo enter the following code in your terminal  
+```git clone git@github.com:mattgra/the_office.git```
+
+### Recreate python env
+To re-create the python environment you need 2 things  
+- conda (version used in this repo is `conda 4.11.0`)
+- environment.yml file 
+
+From the environment.yml file you can re-create the env via  
+```conda create -f environment.yml```
+
+### Get repo and libs
+todo
+
+### Formatting
+todo
+
+### Testing
+todo
