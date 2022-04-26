@@ -6,8 +6,8 @@
 - [Purpose](#Purpose)
 - [Features](#Features)
 - [Setup](#Setup)
-  - [Clone repo](#Clone repo)
-  - [Conda env](#Recreate python env)
+  - [Clone repo](#Clone-repo)
+  - [Conda env](#Conda-env)
   - [Code formatting](#Formatting)
   - [Testing](#Testing)
 
@@ -31,7 +31,7 @@ So, the next best option was doing an analysis of the best show ever - the offic
 To clone the repo enter the following code in your terminal  
 ```git clone git@github.com:mattgra/the_office.git```
 
-### Recreate python env
+### Conda env
 To re-create the python environment you need 2 things  
 - conda (version used in this repo is `conda 4.11.0`)
 - environment.yml file 
