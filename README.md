@@ -1,6 +1,11 @@
 # The Office: Analysis of lines for the main characters
 ![Alt text](docs/imgs/the-office-992x560.jpg?raw=true "The Office")
 
+## Table of content
+
+- [Purpose of this repo](#Purpose of this repo)
+- [Features](#Features I was thinking of)
+
 ## Purpose of this repo
 I was looking for a nice data science project - nice as in novel, helpful to humanity, ... - but didn't bother doing the classic "predict skin cancer from 50 trillion images using 17 GPUs" project.
 So, the next best option was doing an analysis of the best show ever - the office - inspired by the probably best data science blogpost ever from The Pudding (see [link](https://pudding.cool/2017/09/hip-hop-words/))
