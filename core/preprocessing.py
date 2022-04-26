@@ -12,29 +12,22 @@ def basic_preprocessing(df):
     return df
 
 
-def remove_specific_characters(df, column):
-    # TODO: remove things like lines that only consist of ”
-    return_df = df[(df[column] != "”")]
-    return return_df
-
-
-def remove_lines_that_only_consist_of_one_space(df, column):
+def remove_specific_lines(df, column, lines=None):
     """
     TODO
 
-    :param df: pandas dataframe containing 1 sentence (and other columns) per row in column 'column'
-    :param column: string specifying column name of column containing sentences
-    :return: cleaned dataframe without any empty rows in column 'column'
+    :param df:
+    :param column:
+    :param lines:
+    :return:
     """
 
-    # Remove those lines that are only an empty string or a space
-    return_df = df[(df[column] != "") & (df[column] != " ")]
+    if lines is None:
+        lines = ['”', '', ' ']
+    for line in lines:
+        df = df[(df[column] != line)]
 
-    # Quick check
-    assert not any(return_df[column] == ""), "Error: Some lines are only an empty string"
-    assert not any(return_df[column] == " "), "Error: Some lines are only a white space"
-
-    return return_df
+    return df
 
 
 def remove_double_and_more_spaces(df, column):
@@ -57,6 +50,7 @@ def remove_double_and_more_spaces(df, column):
 
 def split_lines_into_sentences(df, column, split_characters=None):
     """
+    TODO
 
     :param df:
     :param column:
@@ -75,7 +69,7 @@ def split_lines_into_sentences(df, column, split_characters=None):
     return df
 
 
-def preprocessing_pipeline(df, column, verbose=False):
+def preprocessing_pipeline(df, column):
     """
     TODO
 
@@ -88,12 +82,11 @@ def preprocessing_pipeline(df, column, verbose=False):
     df = basic_preprocessing(df=df)
     df = split_lines_into_sentences(df=df, column=column)
     df = remove_double_and_more_spaces(df=df, column=column)
-    df = remove_lines_that_only_consist_of_one_space(df=df, column=column)
 
     # Also remove any leading or lagging spaces
     df[column] = df[column].str.strip()
 
-    df = remove_specific_characters(df=df, column=column)
+    df = remove_specific_lines(df=df, column=column)
 
     # Quick check
     assert not any(df[column] == ""), "Error: Some lines are only an empty string"

@@ -39,11 +39,9 @@ To re-create the python environment you need 2 things
 From the environment.yml file you can re-create the env via  
 ```conda create -f environment.yml```
 
-### Get repo and libs
-todo
-
 ### Formatting
-todo
+To follow best-practices for code formatting, _black_ (version 22.3.0) was used with a line-length of 120.  
+```black core/ --line-length 120```
 
 ### Testing
 todo
