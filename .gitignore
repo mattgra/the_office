@@ -2,3 +2,4 @@ data/*
 .DS*
 .ipynb*
 __pycache__*
+.idea/*

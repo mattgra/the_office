@@ -13,6 +13,12 @@ def basic_preprocessing(df):
     return df
 
 
+def remove_specific_characters(df, column):
+    # TODO: remove things like lines that only consist of ”
+    return_df = df[(df[column] != '”')]
+    return return_df
+
+
 def remove_lines_that_only_consist_of_one_space(df, column):
     """
     TODO
@@ -84,6 +90,11 @@ def preprocessing_pipeline(df, column, verbose=False):
     df = split_lines_into_sentences(df=df, column=column)
     df = remove_double_and_more_spaces(df=df, column=column)
     df = remove_lines_that_only_consist_of_one_space(df=df, column=column)
+
+    # Also remove any leading or lagging spaces
+    df[column] = df[column].str.strip()
+
+    df = remove_specific_characters(df=df, column=column)
 
     # Quick check
     assert not any(df[column] == ''), 'Error: Some lines are only an empty string'
