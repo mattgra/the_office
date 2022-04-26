@@ -1,5 +1,4 @@
 import pandas as pd
-import logging
 
 
 def basic_preprocessing(df):
@@ -15,7 +14,7 @@ def basic_preprocessing(df):
 
 def remove_specific_characters(df, column):
     # TODO: remove things like lines that only consist of ”
-    return_df = df[(df[column] != '”')]
+    return_df = df[(df[column] != "”")]
     return return_df
 
 
@@ -29,11 +28,11 @@ def remove_lines_that_only_consist_of_one_space(df, column):
     """
 
     # Remove those lines that are only an empty string or a space
-    return_df = df[(df[column] != '') & (df[column] != ' ')]
+    return_df = df[(df[column] != "") & (df[column] != " ")]
 
     # Quick check
-    assert not any(return_df[column] == ''), 'Error: Some lines are only an empty string'
-    assert not any(return_df[column] == ' '), 'Error: Some lines are only a white space'
+    assert not any(return_df[column] == ""), "Error: Some lines are only an empty string"
+    assert not any(return_df[column] == " "), "Error: Some lines are only a white space"
 
     return return_df
 
@@ -48,10 +47,10 @@ def remove_double_and_more_spaces(df, column):
     """
 
     # Replace all multi-spaces in all dataframe entries with a single space
-    df[column] = df[column].str.replace(r'\s+', ' ', regex=True)
+    df[column] = df[column].str.replace(r"\s+", " ", regex=True)
 
     # Quick check that there are no entries left
-    assert not any(df[column].str.contains('  ')), 'Error: Some lines contain a double space'
+    assert not any(df[column].str.contains("  ")), "Error: Some lines contain a double space"
 
     return df
 
@@ -66,12 +65,12 @@ def split_lines_into_sentences(df, column, split_characters=None):
     """
 
     if split_characters is None:
-        split_characters = ['.', '?', '!']
+        split_characters = [".", "?", "!"]
     for split_char in split_characters:
         df[column] = df[column].str.split(split_char)
         df = df.explode(column)
 
-    df = df.reset_index().rename(columns={'index': 'line_id'})
+    df = df.reset_index().rename(columns={"index": "line_id"})
 
     return df
 
@@ -97,14 +96,14 @@ def preprocessing_pipeline(df, column, verbose=False):
     df = remove_specific_characters(df=df, column=column)
 
     # Quick check
-    assert not any(df[column] == ''), 'Error: Some lines are only an empty string'
-    assert not any(df[column] == ' '), 'Error: Some lines are only a white space'
-    assert not any(df[column].str.contains('  ')), 'Error: Some lines contain a double space'
+    assert not any(df[column] == ""), "Error: Some lines are only an empty string"
+    assert not any(df[column] == " "), "Error: Some lines are only a white space"
+    assert not any(df[column].str.contains("  ")), "Error: Some lines contain a double space"
 
     return df
 
 
 if __name__ == "__main__":
 
-    df = pd.read_csv('data/the-office_lines.csv', index_col=0)
-    df = preprocessing_pipeline(df=df, column='line', verbose=True)
+    df = pd.read_csv("data/the-office_lines.csv", index_col=0)
+    df = preprocessing_pipeline(df=df, column="line", verbose=True)

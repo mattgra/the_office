@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 import sys, os
+
 sys.path.append(os.getcwd())  # Workaround TODO: fix this
 from core.preprocessing import preprocessing_pipeline
 
@@ -9,7 +10,7 @@ from core.preprocessing import preprocessing_pipeline
 pd.options.mode.chained_assignment = None  # default='warn'
 
 
-def get_counts_of_sentences_per_character(df, char_col='character', line_col='line'):
+def get_counts_of_sentences_per_character(df, char_col="character", line_col="line"):
     """
     TODO
 
@@ -23,16 +24,16 @@ def get_counts_of_sentences_per_character(df, char_col='character', line_col='li
     df_tf = df[[line_col, char_col]]
 
     # 2) Add a third column with "1" in every row (this will be used to sum up the pivot result below)
-    df_tf['values'] = 1
+    df_tf["values"] = 1
 
     # 3) Pivot by character & line and aggregate - fill the rest with 0's
     # TODO: i'm not entirely sure why we use 'count' and not 'sum' in the aggfunc?
-    pivot = df_tf.pivot_table(columns=char_col, index=line_col, values='values', aggfunc='count').fillna(0)
+    pivot = df_tf.pivot_table(columns=char_col, index=line_col, values="values", aggfunc="count").fillna(0)
 
     return pivot
 
 
-def get_counts_per_line_for_specific_characters_vs_others(df, character, char_col='character', line_col='line'):
+def get_counts_per_line_for_specific_characters_vs_others(df, character, char_col="character", line_col="line"):
     """
     TODO
 
@@ -52,17 +53,17 @@ def get_counts_per_line_for_specific_characters_vs_others(df, character, char_co
 
     # 2) Combine the 2 series to a dataframe matched on the same indices (they should have the same anyway!)
     # assert character_count.index == others_count.index, 'Indices of pandas series do not match!'
-    df_character = pd.concat([character_count, others_count], axis=1).rename(columns={0: 'Others'})
+    df_character = pd.concat([character_count, others_count], axis=1).rename(columns={0: "Others"})
 
     # 3) Normalize the line counts to 'counts per 10'000 lines'
     # Otherwise - those who speak more lines naturally have higher counts and a comparison is difficult
-    df_character[character + '_norm'] = df_character[character] / df_character[character].sum() * 10000
-    df_character['Others_norm'] = df_character['Others'] / df_character['Others'].sum() * 10000
+    df_character[character + "_norm"] = df_character[character] / df_character[character].sum() * 10000
+    df_character["Others_norm"] = df_character["Others"] / df_character["Others"].sum() * 10000
 
     return df_character
 
 
-def get_tfidf(df, char_col='character', line_col='line'):
+def get_tfidf(df, char_col="character", line_col="line"):
     """
     TODO
     :param df:
@@ -89,25 +90,25 @@ def get_tfidf(df, char_col='character', line_col='line'):
     #  3]     [3, 3, 3]]
     # ... and then use an element-wise multiplication on the tf_matrix and the idf_matrix
     # But before - we want to make sure the indices of both product inputs are the same
-    assert all(tf.index == idf.index), 'Indices do not match'
+    assert all(tf.index == idf.index), "Indices do not match"
     tf_matrix = tf.values
     idf_matrix = np.repeat(idf.values[:, None], len(tf.columns), axis=1)
     tfidf_matrix = np.multiply(tf_matrix, idf_matrix)
 
     # Convert back into dataframe
-    df_tfidf = pd.DataFrame(tfidf_matrix, columns = tf.columns, index=tf.index)
+    df_tfidf = pd.DataFrame(tfidf_matrix, columns=tf.columns, index=tf.index)
 
     # Test by comparing a single column
-    tfidf_michael = tf['Michael'] * idf
-    assert all(tfidf_michael == df_tfidf['Michael']), 'TFIDF test not passed.'
+    tfidf_michael = tf["Michael"] * idf
+    assert all(tfidf_michael == df_tfidf["Michael"]), "TFIDF test not passed."
 
     return df_tfidf
 
 
 if __name__ == "__main__":
 
-    df = pd.read_csv('data/the-office_lines.csv', index_col=0)
-    df = preprocessing_pipeline(df=df, column='line', verbose=True)
-    df_michael = get_counts_per_line_for_specific_characters_vs_others(df, 'Michael')
+    df = pd.read_csv("data/the-office_lines.csv", index_col=0)
+    df = preprocessing_pipeline(df=df, column="line", verbose=True)
+    df_michael = get_counts_per_line_for_specific_characters_vs_others(df, "Michael")
 
     tfidf = get_tfidf(df)
