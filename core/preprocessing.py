@@ -57,16 +57,16 @@ def remove_text_between_brackets(df, column):
 
     # TODO: make this nicer and expand cleaning (e.g., any non-alphanumeric character at beginning of line removed)
     # Remove closing brackets at start of line
-    pattern = re.compile(r'^]')
-    df[column] = df[column].str.replace(pattern, '')
+    pattern = re.compile(r"^]")
+    df[column] = df[column].str.replace(pattern, "")
 
     # Remove ”+closing bracket at start of line
-    pattern = re.compile(r'^”]')
-    df[column] = df[column].str.replace(pattern, '')
+    pattern = re.compile(r"^”]")
+    df[column] = df[column].str.replace(pattern, "")
 
     # Remove starting ’
-    pattern = re.compile(r'^’')
-    df[column] = df[column].str.replace(pattern, '')
+    pattern = re.compile(r"^’")
+    df[column] = df[column].str.replace(pattern, "")
 
     # Final cleaning of white spaces
     df[column] = df[column].str.strip()
@@ -112,7 +112,7 @@ def split_lines_into_sentences(df, column, split_characters=None):
     return df
 
 
-def preprocessing_pipeline(df, column='line'):
+def preprocessing_pipeline(df, column="line"):
     """
     TODO
 
