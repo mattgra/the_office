@@ -14,6 +14,7 @@
   - [What's in the data](#What's-in-the-data)
   - [Who is speaking the most per season](#F1-Who-is-speaking-the-most-per-season)
   - [What lines define the main characters](#F2-What-lines-define-the-main-characters)
+  - [What is the sentiment of different episodes](#F3-What-is-the-sentiment-of-different-episodes)
   - [What or who makes an episode great](#What-or-who-makes-an-episode-great)
 ## Purpose
 I was looking for a nice data science project - nice as in novel, helpful to humanity, ... - but didn't bother doing the classic "predict skin cancer from 50 trillion images using 17 GPUs" project.
@@ -25,14 +26,12 @@ So, the next best option was doing an analysis of the best show ever - the offic
 - __F2. Basic NLP__: Which lines / words are most characteristic of different characters (e.g., Michael: "that's what she said")?
   - :white_check_mark: Create analysis file
   - :x: Create output report
-- _F3. Machine Learning (unsupervised)_: Given only the spoken text - can we identify "clusters" (e.g., characters, sentiment, ...)
+- __F3. Machine Learning (supervised)__: What is the sentiment of different episodes / seasons? Does it differ?
+  - :white_check_mark: Create analysis file
+  - :x: Create output report
+- __F4. Machine Learning (causal / supervised)__: Can we predict the episode rating based on language features (e.g., who spoke who many lines, sentiment, ...)? What features would make sense?
   - :x: Create analysis file
   - :x: Create output report
-  - :x: Create CLI interface
-- _F4. Machine Learning (causal / supervised)_: Can we predict the episode rating based on language features (e.g., who spoke who many lines)?
-  - :x: Create analysis file
-  - :x: Create output report
-  - :x: Create CLI interface
 
 ## Setup
 
@@ -79,6 +78,9 @@ TODO
 
 ### F2 What lines define the main characters
 ![Alt text](docs/analysis_outputs/tf-idf-analysis.png?raw=true "The Office")
+
+### F3 What is the sentiment of different episodes
+![Alt text](docs/analysis_outputs/sentiment-analysis.png?raw=true "The Office")
 
 ### What or who makes an episode great
 TODO
