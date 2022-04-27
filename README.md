@@ -20,10 +20,22 @@ I was looking for a nice data science project - nice as in novel, helpful to hum
 So, the next best option was doing an analysis of the best show ever - the office - inspired by the probably best data science blogpost ever from The Pudding (see [link](https://pudding.cool/2017/09/hip-hop-words/))
 
 ## Features
-- Which lines / words are most characteristic of different characters (e.g., Michael: "that's what she said")?
-- Which characters speak the most words per season & gender?
-- Is the episode rating (if available) a function of who spoke how much?
-- Are there topic clusters of different shows (bonus)
+- __Descriptive analysis__: Which characters speak the most words per season?
+  - :white_check_mark: Create analysis file
+  - :x: Create output report (dashboard like)
+  - Create CLI interface
+- __Basic NLP__: Which lines / words are most characteristic of different characters (e.g., Michael: "that's what she said")?
+  - Create analysis file
+  - Create output report
+  - Create CLI interface
+- _Machine Learning (unsupervised)_: Given only the spoken text - can we identify "clusters" (e.g., characters, sentiment, ...)
+  - Create analysis file
+  - Create output report
+  - Create CLI interface
+- _Machine Learning (causal / supervised)_: Can we predict the episode rating based on language features (e.g., who spoke who many lines)?
+  - Create analysis file
+  - Create output report
+  - Create CLI interface
 
 ## Setup
 

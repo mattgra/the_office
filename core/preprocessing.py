@@ -1,4 +1,9 @@
+import re
 import pandas as pd
+
+# To get rid of false positive for 'SettingWithCopyWarning' based on this post:
+# https://stackoverflow.com/questions/20625582/how-to-deal-with-settingwithcopywarning-in-pandas
+pd.options.mode.chained_assignment = None  # default='warn'
 
 
 def basic_preprocessing(df):
@@ -23,10 +28,48 @@ def remove_specific_lines(df, column, lines=None):
     """
 
     if lines is None:
-        lines = ['”', '', ' ']
+        lines = ["”", "", " ", "]"]
     for line in lines:
         df = df[(df[column] != line)]
 
+    return df
+
+
+def remove_text_between_brackets(df, column):
+    """
+    TODO
+
+    :param df:
+    :param column:
+    :return:
+    """
+
+    # Remove text between any combination of brackets (e.g., {this would be removed])
+    df[column] = df[column].str.replace(r"\[.*\]", "", regex=True)
+    df[column] = df[column].str.replace(r"\[.*\)", "", regex=True)
+    df[column] = df[column].str.replace(r"\[.*\}", "", regex=True)
+    df[column] = df[column].str.replace(r"\(.*\]", "", regex=True)
+    df[column] = df[column].str.replace(r"\(.*\)", "", regex=True)
+    df[column] = df[column].str.replace(r"\(.*\}", "", regex=True)
+    df[column] = df[column].str.replace(r"\{.*\]", "", regex=True)
+    df[column] = df[column].str.replace(r"\{.*\)", "", regex=True)
+    df[column] = df[column].str.replace(r"\{.*\}", "", regex=True)
+
+    # TODO: make this nicer and expand cleaning (e.g., any non-alphanumeric character at beginning of line removed)
+    # Remove closing brackets at start of line
+    pattern = re.compile(r'^]')
+    df[column] = df[column].str.replace(pattern, '')
+
+    # Remove ”+closing bracket at start of line
+    pattern = re.compile(r'^”]')
+    df[column] = df[column].str.replace(pattern, '')
+
+    # Remove starting ’
+    pattern = re.compile(r'^’')
+    df[column] = df[column].str.replace(pattern, '')
+
+    # Final cleaning of white spaces
+    df[column] = df[column].str.strip()
     return df
 
 
@@ -81,6 +124,7 @@ def preprocessing_pipeline(df, column):
 
     df = basic_preprocessing(df=df)
     df = split_lines_into_sentences(df=df, column=column)
+    df = remove_text_between_brackets(df=df, column=column)
     df = remove_double_and_more_spaces(df=df, column=column)
 
     # Also remove any leading or lagging spaces
@@ -99,4 +143,4 @@ def preprocessing_pipeline(df, column):
 if __name__ == "__main__":
 
     df = pd.read_csv("data/the-office_lines.csv", index_col=0)
-    df = preprocessing_pipeline(df=df, column="line", verbose=True)
+    df = preprocessing_pipeline(df=df, column="line")
