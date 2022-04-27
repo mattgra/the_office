@@ -112,7 +112,7 @@ def split_lines_into_sentences(df, column, split_characters=None):
     return df
 
 
-def preprocessing_pipeline(df, column):
+def preprocessing_pipeline(df, column='line'):
     """
     TODO
 
