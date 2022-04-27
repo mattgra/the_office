@@ -75,10 +75,10 @@ pytest tests
 TODO
 
 ### Who is speaking the most per season
-TODO
+![Alt text](docs/analysis_outputs/count_of_spoken_lines_per_season_and_character.png?raw=true "The Office")
 
 ### What lines define the main characters
-TODO
+![Alt text](docs/analysis_outputs/tf-idf-analysis.png?raw=true "The Office")
 
 ### What or who makes an episode great
 TODO
