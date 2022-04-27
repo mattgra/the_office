@@ -21,21 +21,19 @@ So, the next best option was doing an analysis of the best show ever - the offic
 
 ## Features
 - __Descriptive analysis__: Which characters speak the most words per season?
-  - :white_check_mark: Create analysis file
-  - :x: Create output report (dashboard like)
-  - Create CLI interface
+  - :white_check_mark: Create analysis script file
 - __Basic NLP__: Which lines / words are most characteristic of different characters (e.g., Michael: "that's what she said")?
-  - Create analysis file
-  - Create output report
-  - Create CLI interface
+  - :x: Create analysis file
+  - :x: Create output report
+  - :x: Create CLI interface
 - _Machine Learning (unsupervised)_: Given only the spoken text - can we identify "clusters" (e.g., characters, sentiment, ...)
-  - Create analysis file
-  - Create output report
-  - Create CLI interface
+  - :x: Create analysis file
+  - :x: Create output report
+  - :x: Create CLI interface
 - _Machine Learning (causal / supervised)_: Can we predict the episode rating based on language features (e.g., who spoke who many lines)?
-  - Create analysis file
-  - Create output report
-  - Create CLI interface
+  - :x: Create analysis file
+  - :x: Create output report
+  - :x: Create CLI interface
 
 ## Setup
 
