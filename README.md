@@ -12,24 +12,24 @@
   - [Testing](#Testing)
 - [Output](#Output)
   - [What's in the data](#What's-in-the-data)
-  - [Who is speaking the most per season](#Who-is-speaking-the-most-per-season)
-  - [What lines define the main characters](#What-lines-define-the-main-characters)
+  - [Who is speaking the most per season](#F1-Who-is-speaking-the-most-per-season)
+  - [What lines define the main characters](#F2-What-lines-define-the-main-characters)
   - [What or who makes an episode great](#What-or-who-makes-an-episode-great)
 ## Purpose
 I was looking for a nice data science project - nice as in novel, helpful to humanity, ... - but didn't bother doing the classic "predict skin cancer from 50 trillion images using 17 GPUs" project.
 So, the next best option was doing an analysis of the best show ever - the office - inspired by the probably best data science blogpost ever from The Pudding (see [link](https://pudding.cool/2017/09/hip-hop-words/))
 
 ## Features
-- __Descriptive analysis__: Which characters speak the most words per season?
+- __F1. Descriptive analysis__: Which characters speak the most words per season?
   - :white_check_mark: Create analysis script file
-- __Basic NLP__: Which lines / words are most characteristic of different characters (e.g., Michael: "that's what she said")?
+- __F2. Basic NLP__: Which lines / words are most characteristic of different characters (e.g., Michael: "that's what she said")?
   - :white_check_mark: Create analysis file
   - :x: Create output report
-- _Machine Learning (unsupervised)_: Given only the spoken text - can we identify "clusters" (e.g., characters, sentiment, ...)
+- _F3. Machine Learning (unsupervised)_: Given only the spoken text - can we identify "clusters" (e.g., characters, sentiment, ...)
   - :x: Create analysis file
   - :x: Create output report
   - :x: Create CLI interface
-- _Machine Learning (causal / supervised)_: Can we predict the episode rating based on language features (e.g., who spoke who many lines)?
+- _F4. Machine Learning (causal / supervised)_: Can we predict the episode rating based on language features (e.g., who spoke who many lines)?
   - :x: Create analysis file
   - :x: Create output report
   - :x: Create CLI interface
@@ -74,10 +74,10 @@ pytest tests
 ### What's in the data
 TODO
 
-### Who is speaking the most per season
+### F1 Who is speaking the most per season
 ![Alt text](docs/analysis_outputs/count_of_spoken_lines_per_season_and_character.png?raw=true "The Office")
 
-### What lines define the main characters
+### F2 What lines define the main characters
 ![Alt text](docs/analysis_outputs/tf-idf-analysis.png?raw=true "The Office")
 
 ### What or who makes an episode great
