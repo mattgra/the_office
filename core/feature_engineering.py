@@ -2,11 +2,17 @@ import pandas as pd
 
 
 def get_merged_dataframes(fp_episodes="data/the_office_series.csv", fp_lines="data/processed-sentiment-analysis.csv"):
-    """
-    TODO: episode indexing is not correct (check with wikipedia article
-    :param fp_episodes:
-    :param fp_lines:
-    :return:
+    """Function to merge ratings reviews per episode with NLP analysis of text spoken during episodes.
+
+    Function to merge 2 specific dataframes.
+    (1) contains review data for each episode
+    (2) contains each spoken line per character & episode incl. a sentiment classification of the spoken line (i.e., positive or negative sentiment)
+
+    TODO: episode indexing is not correct, some episodes are missing! (check with wikipedia article)
+
+    :param fp_episodes: absolute or relative (to project root) filepath of ratings dataframe
+    :param fp_lines: absolute or relative (to project root) filepath of ratings dataframe
+    :return: merged dataframe
     """
 
     # 1. I/O
@@ -38,10 +44,14 @@ def get_merged_dataframes(fp_episodes="data/the_office_series.csv", fp_lines="da
 
 
 def extract_features(df):
-    """
+    """Extracts specified features from a pandas dataframe."
+
+    Extracts features around episodes - e.g., NLP processing of spoken text during shows to classify / predict the rating of an episode.
+    NOTE: the unit of analysis is 1 episode - i.e., the df returned will have 1 line entry per episode.
+
     TODO
-    :param df:
-    :return:
+    :param df: pandas dataframe containing the-office data
+    :return: pandas dataframe with specific features PER episode
     """
 
     dfg = df.groupby(["character", "label", "episode_count"]).agg(

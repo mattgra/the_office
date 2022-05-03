@@ -11,13 +11,12 @@ pd.options.mode.chained_assignment = None  # default='warn'
 
 
 def get_counts_of_sentences_per_character(df, char_col="character", line_col="line"):
-    """
-    TODO
+    """Returns a heatmap counting how often a specific character speaks a specific line.
 
-    :param df:
-    :param char_col:
-    :param line_col:
-    :return:
+    :param df: dataframe with 1 sentence per row
+    :param char_col (optional): name of dataframe column indicating character (e.g., 'Michael')
+    :param line_col (optional): name dataframe column with spoken sentence (e.g., 'That's what she said!')
+    :return: returns dataframe (heatmap) with counts of specific sentences per character
     """
 
     # 1) Extract the character & line columns of the dataframe
@@ -34,15 +33,15 @@ def get_counts_of_sentences_per_character(df, char_col="character", line_col="li
 
 
 def get_counts_per_line_for_specific_characters_vs_others(df, character, char_col="character", line_col="line"):
-    """
-    TODO
+    """Returns how often a specified character says a sentence and how often all other characters together say the same sentence - grouped by all unique sentences"
 
-    :param df:
-    :param character:
-    :param char_col:
-    :param line_col:
-    :return:
+    :param df: dataframe with 1 sentence per row
+    :param character: name of character of interest (e.g., 'Michael')
+    :param char_col (optional): name of dataframe column indicating character (e.g., 'Michael')
+    :param line_col (optional): name dataframe column with spoken sentence (e.g., 'That's what she said!')
+    :return: returns dataframe with counts of given sentences for specified character vs all other characters
     """
+
     line_counts_per_character = get_counts_of_sentences_per_character(df, char_col=char_col, line_col=line_col)
 
     # 1a) Extract the column for the specified character (this is a pd.series)
@@ -64,13 +63,13 @@ def get_counts_per_line_for_specific_characters_vs_others(df, character, char_co
 
 
 def get_tfidf(df, char_col="character", line_col="line"):
-    """
+    """Returns term frequency - inverse document frequency (TF-IDF) in heatmap format (i.e., by character & unique spoken line).
     TODO
-    :param df:
-    :param character:
-    :param char_col:
-    :param line_col:
-    :return:
+    :param df: dataframe with 1 sentence per row
+    :param character: name of character of interest (e.g., 'Michael')
+    :param char_col (optional): name of dataframe column indicating character (e.g., 'Michael')
+    :param line_col (optional): name dataframe column with spoken sentence (e.g., 'That's what she said!')
+    :return: returns dataframe (heatmap) with tf-idf scores of specific sentences per character
     """
 
     counts_per_char = get_counts_of_sentences_per_character(df, char_col=char_col, line_col=line_col)
