@@ -7,24 +7,24 @@ pd.options.mode.chained_assignment = None  # default='warn'
 
 
 def basic_preprocessing(df):
-    """
-    TODO
+    """Function for basic, (ideally) data-unspecific pre-processing (e.g., converting all column names to lower case)
 
     :param df: pandas dataframe
     :return: pandas dataframe with all column headers in lower case
     """
+
     df.columns = df.columns.str.lower()
     return df
 
 
 def remove_specific_lines(df, column, lines=None):
-    """
+    """Function to remove lines that only consist of irrelevant characters (e.g., empty lines, only a white space, ...) -> these lines are mostly artifacts from other pre-processing.
     TODO
 
-    :param df:
-    :param column:
-    :param lines:
-    :return:
+    :param df: pandas dataframe
+    :param column: column name to select column from dataframe
+    :param lines: (optional) list of strings representing the lines to be ignored (e.g., [" "])
+    :return: pandas dataframe
     """
 
     if lines is None:
