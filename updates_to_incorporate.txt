@@ -1,0 +1,5 @@
+1. after cloning the repo -> need to move into root folder "the_office"
+2. to create conda env -> command is wrong, use "command conda env create -f environment.yml"
+3. activate environment!
+
+
