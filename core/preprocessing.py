@@ -19,7 +19,6 @@ def basic_preprocessing(df):
 
 def remove_specific_lines(df, column, lines=None):
     """Function to remove lines that only consist of irrelevant characters (e.g., empty lines, only a white space, ...) -> these lines are mostly artifacts from other pre-processing.
-    TODO
 
     :param df: pandas dataframe
     :param column: column name to select column from dataframe
@@ -37,11 +36,11 @@ def remove_specific_lines(df, column, lines=None):
 
 def remove_text_between_brackets(df, column):
     """
-    TODO
+    TODO: this function is such a mess and needs to be coded properly...
 
-    :param df:
-    :param column:
-    :return:
+    :param df: pandas dataframe
+    :param column: column name to select column from dataframe
+    :return: pandas dataframe
     """
 
     # Remove text between any combination of brackets (e.g., {this would be removed])
@@ -57,7 +56,7 @@ def remove_text_between_brackets(df, column):
 
     # TODO: make this nicer and expand cleaning (e.g., any non-alphanumeric character at beginning of line removed)
     # Remove closing brackets at start of line
-    pattern = re.compile(r"^]")
+    pattern = re.compile(r"^]")  # TODO: is this not matching anything that starts with "]"?
     df[column] = df[column].str.replace(pattern, "")
 
     # Remove ”+closing bracket at start of line
@@ -68,14 +67,13 @@ def remove_text_between_brackets(df, column):
     pattern = re.compile(r"^’")
     df[column] = df[column].str.replace(pattern, "")
 
-    # Final cleaning of white spaces
+    # Final cleaning of leading and trailing white spaces
     df[column] = df[column].str.strip()
     return df
 
 
 def remove_double_and_more_spaces(df, column):
-    """
-    TODO
+    """Function to replace occurences of multiple white spaces after each other with a single white space."
 
     :param df: pandas dataframe containing 1 sentence (and other columns) per row in column 'column'
     :param column: string specifying column name of column containing sentences
@@ -92,13 +90,13 @@ def remove_double_and_more_spaces(df, column):
 
 
 def split_lines_into_sentences(df, column, split_characters=None):
-    """
-    TODO
+    """Function to split strings based on specified split characters (e.g., input line = "Hi. How are you?" -> Output lines: "Hi", "How are you")
+    Note: This each split will add a new row to the input dataframe.
 
-    :param df:
-    :param column:
-    :param split_characters:
-    :return:
+    :param df: pandas dataframe containing spoken text per character
+    :param column: string specifying column name of column containing spoken text
+    :param split_characters: (optional) list of characters to use for string splitting (e.g., sentence terminators)
+    :return: dataframe with 1 row per sentence
     """
 
     if split_characters is None:
